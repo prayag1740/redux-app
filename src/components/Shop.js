@@ -1,12 +1,24 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../state';
+import { depositMoney, withdrawMoney } from '../state/action-creators';
+
 
 export default function Shop() {
+
+  const dispatch = useDispatch() ;
+  const actions = bindActionCreators(actionCreators, dispatch) ;
+
   return (
     <div>
-        <h4> Bug Addidas Shoes for Rs 50</h4>
-        <button type="button" class="btn btn-primary mx-2"> - </button>
-        Add this item your cart
-        <button type="button" class="btn btn-primary mx-2"> + </button>
+        <h4>Deposit / Withdraw Money</h4>
+        {/* <button type="button" className="btn btn-primary mx-2" onClick={() => dispatch(actionCreators.withdrawMoney(100))}> - </button>
+        Update Balance
+        <button type="button" className="btn btn-primary mx-2" onClick={() =>dispatch(actionCreators.depositMoney(100))}> + </button> */}
+        <button type="button" className="btn btn-primary mx-2" onClick={() => actions.withdrawMoney(100)}> - </button>
+        Update Balance
+        <button type="button" className="btn btn-primary mx-2" onClick={() => actions.depositMoney(100)}> + </button>
     </div>
   )
 }
